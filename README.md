@@ -4,28 +4,10 @@ Repo for showing bug/inconsistency between `cli` and `zed` biome format.
 
 ## How to reproduce
 
-1. run `npm test` - no issues
+1. run `npm test` - cli has issues
 2. run `zed .`
 3. open index.ts file and run formatter (cmd+shift+i)
-4. run `npm test` - issues found
-
-This is what formatter from zed produce:
-```
-./index.ts format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  ✖ Formatter would have printed the following content:
-
-    1 1 │   try {
-    2   │ - ··//·Something·here
-    3   │ - }·catch·(_e)·{·}
-      2 │ + → //·Something·here
-      3 │ + }·catch·(_e)·{}
-    4 4 │
-
-
-Checked 3 files in 13ms. No fixes applied.
-Found 1 error.
-```
+4. zed did not apply formatting changes for quotes and indents
 
 ---
 
@@ -36,8 +18,7 @@ zed settings.json
   "lsp": {
     "biome": {
       "settings": {
-        "require_config_file": true,
-        "config_path": "<path>/biome.json"
+        "require_config_file": true
       }
     }
   },
